@@ -10,7 +10,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Graphical Password</a>
+        <a class="navbar-brand" href="/">Grafično geslo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,17 +18,17 @@
           <ul class="navbar-nav ms-auto">
             {% if 'username' in session %}
             <li class="nav-item">
-              <a class="nav-link" href="#">Welcome, {{ session['username'] }}!</a>
+              <a class="nav-link" href="#">Pozdravljen/a, {{ session['username'] }}!</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Odjava</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+              <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Prijava</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/signup"><i class="fas fa-user-plus"></i> Signup</a>
+              <a class="nav-link" href="/signup"><i class="fas fa-user-plus"></i> Registracija</a>
             </li>
             {% endif %}
           </ul>

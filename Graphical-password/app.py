@@ -3,10 +3,10 @@ import sqlite3
 import bcrypt
 import logging
 
-from flask import Flask, render_template, request, session, redirect, url_for, flash
+from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecretkey'
+app.config['SECRET_KEY'] = 'my_secret_key'
 
 N = 3
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
@@ -44,7 +44,7 @@ def login():
             return redirect(url_for('welcome'))
         else:
             p_images = get_password_images()
-            return render_template('login.html', error='Invalid username or password', p_images=p_images)
+            return render_template('login.html', error='Napačno uporabniško ime ali geslo', p_images=p_images)
     else:
         p_images = get_password_images()
         return render_template('login.html', p_images=p_images)
@@ -55,13 +55,16 @@ def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        if username == '' or password == '':
+            p_images = get_password_images()
+            return render_template('signup.html', error='Izpolni obe polji!', p_images=p_images)
         with sqlite3.connect('identifier.sqlite') as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
             result = cursor.fetchone()
             if result:
                 p_images = get_password_images()
-                return render_template('signup.html', error='Username already taken', p_images=p_images)
+                return render_template('signup.html', error='Uporabniško ime je že zasedeno', p_images=p_images)
             else:
                 salt = bcrypt.gensalt()
                 hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
@@ -82,5 +85,3 @@ def logout():
 
 if __name__ == '__main__':
     app.run()
-
-
