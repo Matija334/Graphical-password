@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Login</h1>
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        <form method="POST" class="form-horizontal" id="post-form">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="username">Username:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+            </div>
+
+            {% include 'pwd.html' %}
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        var gpwd_set = new Set();
+
+        function onSelect(id) {
+            if (gpwd_set.has(id)) {
+                console.log('true');
+                gpwd_set.delete(id);
+                document.getElementById(id).style.border = null;
+            } else {
+                gpwd_set.add(id);
+                document.getElementById(id).style.border = "2px solid red";
+            }
+
+            console.log(gpwd_set);
+        }
+
+        function post(params) {
+            const form = document.getElementById("post-form");
+
+            for (const key in params) {
+                if (params.hasOwnProperty(key)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = params[key];
+
+                    form.appendChild(hiddenField);
+                }
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+
+        var form = document.getElementById('post-form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            console.log("form submitted!");
+            post({
+                username: document.getElementById('username').value,
+                password: Array.from(gpwd_set),
+            })
+        });
+    </script>
+{% endblock %}

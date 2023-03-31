@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Hello{% endblock %}
+
+{% block content %}
+    <h1>Welcome to our page</h1>
+    <img src="/static/images/welcome.jpg" width="1000px"/>
+    {% if result %}
+        <div class="alert alert-success">{{ result }}</div>
+    {% endif %}
+{% endblock %}

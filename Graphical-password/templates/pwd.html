@@ -1,0 +1,17 @@
+<div class="form-group">
+    <label for="password">Password:</label>
+    <br>
+    <br>
+    {% for row in p_images %}
+        <div>
+            {% for col in row %}
+                <img src="/static/images/{{ col }}.png" alt=" img" style="
+                height: 150px;
+                width: 150px;"
+                     id="{{ col }}"
+                     onclick="onSelect({{ col }})"
+                />
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
