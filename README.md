@@ -1,1 +1,2 @@
 # Graphical-password
+An authentication system known as a graphic password authentication system substitutes graphical pictures for traditional passwords. Given that most people use the same, widely-used passwords everywhere and are vulnerable to social engineering assaults, graphic passwords may provide greater security than text-based ones. Therefore, many of these assaults can be stopped by using graphical passwords.
