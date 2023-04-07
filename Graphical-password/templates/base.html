@@ -1,54 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>{% block title %}{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Grafično geslo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            {% if 'username' in session %}
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pozdravljen/a, {{ session['username'] }}!</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Odjava</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Prijava</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/signup"><i class="fas fa-user-plus"></i> Registracija</a>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="container mt-5">
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
-      {% block content %}{% endblock %}
-    </div>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
-  </body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+
+
+        * {
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:wght@200&family=Nunito:wght@200;300;400&family=Outfit:wght@100;200;300;400;500&display=swap');
+            font-family: 'Montserrat', sans-serif;
+
+        }
+
+        body {
+            background-color: #f2ead3;
+            font-weight: lighter;
+            color: #6a7588;
+        }
+
+
+    </style>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<div class="container mt-5">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</div>
+<!-- Bootstrap JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
+</body>
 </html>

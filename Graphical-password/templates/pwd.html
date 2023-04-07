@@ -6,10 +6,12 @@
         <div>
             {% for col in row %}
                 <img src="/static/images/{{ col }}.png" alt=" img" style="
-                height: 150px;
-                width: 150px;"
-                     id="{{ col }}"
-                     onclick="onSelect({{ col }})"
+                height: 60px;
+                width: 60px;
+                margin: 5px;
+                padding: 5px;"
+                     id="{{ col * 1369}}"
+                     onclick="onSelect({{ col * 1369 }})"
                 />
             {% endfor %}
         </div>

@@ -8,12 +8,12 @@ from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'my_secret_key'
 
-N = 3
+N = 5
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 
 def get_password_images():
-    images = random.sample(range(1, 10), N * N)
+    images = random.sample(range(1, 26), N * N)
     logging.debug(f"Selected Images: {images}")
     p_images = []
     for i in range(0, N * N, N):
