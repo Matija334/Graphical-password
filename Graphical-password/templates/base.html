@@ -1,28 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="sl">
 <head>
     <title>{% block title %}{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
-
-
         * {
         @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:wght@200&family=Nunito:wght@200;300;400&family=Outfit:wght@100;200;300;400;500&display=swap');
             font-family: 'Montserrat', sans-serif;
-
         }
-
         body {
             background-color: #f2ead3;
             font-weight: lighter;
             color: #6a7588;
         }
-
-
     </style>
     {% block head %}
     {% endblock %}

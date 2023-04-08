@@ -1,10 +1,28 @@
 {% extends "base.html" %}
 
-{% block title %}Domov{% endblock %}
+{% block title %}Domov{% endblock %}v
+
+{% block head %}
+    <style>
+        button, button:hover {
+            background-color: #7c8594;
+            text-align: center;
+            align-content: center;
+            border-radius: 25px;
+            border: none;
+            padding: 7px 15px;
+        }
+
+        button a {
+            color: #f2ead3;
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
 
 {% block content %}
-    <h1>Dobrodošli</h1>
-    <img src="/static/images/welcome.jpg" width="1000px"/>
+    <h1>Dobrodošli, {{ session['username'] }}</h1>
+    <button class="mt-3"><a href="/logout">Odjavi se!</a></button>
     {% if result %}
         <div class="alert alert-success">{{ result }}</div>
     {% endif %}

@@ -35,6 +35,9 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        if username == '' or password == '':
+            p_images = get_password_images()
+            return render_template('login.html', error='Izpolni obe polji!', p_images=p_images)
         with sqlite3.connect('identifier.sqlite') as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT password FROM users WHERE username = ?", (username,))
@@ -64,7 +67,7 @@ def signup():
             result = cursor.fetchone()
             if result:
                 p_images = get_password_images()
-                return render_template('signup.html', error='Uporabniško ime je že zasedeno', p_images=p_images)
+                return render_template('signup.html', error='Uporabniško ime je že zasedeno!', p_images=p_images)
             else:
                 salt = bcrypt.gensalt()
                 hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
